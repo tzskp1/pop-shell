@@ -81,28 +81,28 @@
 
         <!-- Focus Shifting -->
         <key type="as" name="focus-left">
-            <default><![CDATA[['<Super>Left','<Super>KP_Left','<Super>h']]]></default>
+            <default><![CDATA[['<Super>d']]]></default>
             <summary>Focus left window</summary>
         </key>
 
         <key type="as" name="focus-down">
-            <default><![CDATA[['<Super>Down','<Super>KP_Down','<Super>j']]]></default>
+            <default><![CDATA[['<Super>h']]]></default>
             <summary>Focus down window</summary>
         </key>
 
         <key type="as" name="focus-up">
-            <default><![CDATA[['<Super>Up','<Super>KP_Up','<Super>k']]]></default>
+            <default><![CDATA[['<Super>t']]]></default>
             <summary>Focus up window</summary>
         </key>
 
         <key type="as" name="focus-right">
-            <default><![CDATA[['<Super>Right','<Super>KP_Right','<Super>l']]]></default>
+            <default><![CDATA[['<Super>n']]]></default>
             <summary>Focus right window</summary>
         </key>
 
         <!-- Launcher -->
         <key type="as" name="activate-launcher">
-            <default><![CDATA[['<Super>slash']]]></default>
+            <default><![CDATA[['<Super>p']]]></default>
             <summary>Search key combo</summary>
         </key>
 

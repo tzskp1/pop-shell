@@ -24,16 +24,51 @@ set_keybindings() {
         return 0
     fi
 
-    left="h"
-    down="j"
-    up="k"
-    right="l"
+    left="d"
+    down="h"
+    up="t"
+    right="n"
 
     KEYS_GNOME_WM=/org/gnome/desktop/wm/keybindings
     KEYS_GNOME_SHELL=/org/gnome/shell/keybindings
     KEYS_MUTTER=/org/gnome/mutter/keybindings
     KEYS_MEDIA=/org/gnome/settings-daemon/plugins/media-keys
     KEYS_MUTTER_WAYLAND_RESTORE=/org/gnome/mutter/wayland/keybindings/restore-shortcuts
+
+    dconf write /org/gnome/mutter/dynamic-workspaces false
+    dconf write /org/gnome/desktop/wm/preferences/num-workspaces 8
+
+    dconf write ${KEYS_GNOME_SHELL}/switch-to-application-1 "@as []"
+    dconf write ${KEYS_GNOME_SHELL}/switch-to-application-2 "@as []"
+    dconf write ${KEYS_GNOME_SHELL}/switch-to-application-3 "@as []"
+    dconf write ${KEYS_GNOME_SHELL}/switch-to-application-4 "@as []"
+    dconf write ${KEYS_GNOME_SHELL}/switch-to-application-5 "@as []"
+    dconf write ${KEYS_GNOME_SHELL}/switch-to-application-6 "@as []"
+    dconf write ${KEYS_GNOME_SHELL}/switch-to-application-7 "@as []"
+    dconf write ${KEYS_GNOME_SHELL}/switch-to-application-8 "@as []"
+    dconf write ${KEYS_GNOME_SHELL}/switch-to-application-9 "@as []"
+
+    dconf write ${KEYS_GNOME_WM}/switch-to-workspace-1 "@as ['<Super>1']"
+    dconf write ${KEYS_GNOME_WM}/switch-to-workspace-2 "@as ['<Super>2']"
+    dconf write ${KEYS_GNOME_WM}/switch-to-workspace-3 "@as ['<Super>3']"
+    dconf write ${KEYS_GNOME_WM}/switch-to-workspace-4 "@as ['<Super>4']"
+    dconf write ${KEYS_GNOME_WM}/switch-to-workspace-5 "@as ['<Super>5']"
+    dconf write ${KEYS_GNOME_WM}/switch-to-workspace-6 "@as ['<Super>6']"
+    dconf write ${KEYS_GNOME_WM}/switch-to-workspace-7 "@as ['<Super>7']"
+    dconf write ${KEYS_GNOME_WM}/switch-to-workspace-8 "@as ['<Super>8']"
+    dconf write ${KEYS_GNOME_WM}/switch-to-workspace-9 "@as ['<Super>9']"
+    dconf write ${KEYS_GNOME_WM}/switch-to-workspace-10 "@as ['<Super>0']"
+
+    dconf write ${KEYS_GNOME_WM}/move-to-workspace-1 "@as ['<Super><Shift>1']"
+    dconf write ${KEYS_GNOME_WM}/move-to-workspace-2 "@as ['<Super><Shift>2']"
+    dconf write ${KEYS_GNOME_WM}/move-to-workspace-3 "@as ['<Super><Shift>3']"
+    dconf write ${KEYS_GNOME_WM}/move-to-workspace-4 "@as ['<Super><Shift>4']"
+    dconf write ${KEYS_GNOME_WM}/move-to-workspace-5 "@as ['<Super><Shift>5']"
+    dconf write ${KEYS_GNOME_WM}/move-to-workspace-6 "@as ['<Super><Shift>6']"
+    dconf write ${KEYS_GNOME_WM}/move-to-workspace-7 "@as ['<Super><Shift>7']"
+    dconf write ${KEYS_GNOME_WM}/move-to-workspace-8 "@as ['<Super><Shift>8']"
+    dconf write ${KEYS_GNOME_WM}/move-to-workspace-9 "@as ['<Super><Shift>9']"
+    dconf write ${KEYS_GNOME_WM}/move-to-workspace-10 "@as ['<Super><Shift>0']"
 
     # Disable incompatible shortcuts
     # Restore the keyboard shortcuts: disable <Super>Escape
@@ -95,7 +130,7 @@ set_keybindings() {
     dconf write ${KEYS_MEDIA}/rotate-video-lock-static "@as []"
 
     # Close Window
-    dconf write ${KEYS_GNOME_WM}/close "['<Super>q', '<Alt>F4']"
+    dconf write ${KEYS_GNOME_WM}/close "['<Shift><Super>c', '<Alt>F4']"
 }
 
 if ! command -v gnome-extensions >/dev/null; then

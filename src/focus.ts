@@ -23,14 +23,18 @@ export class FocusSelector {
         window = window ?? ext.focus_window();
         if (window) {
             let window_list = ext.active_window_list();
-            return select(direction, window, window_list);
+            return top(direction(window, window_list));
         }
-
         return null;
     }
 
     down(ext: Ext, window: ShellWindow | null): ShellWindow | null {
-        return this.select(ext, window_down, window);
+        let focused = window ?? ext.focus_window();
+        if (focused) {
+            let window_list = ext.active_window_list();
+            return top(window_down(focused, window_list)) ?? top(window_right(focused, window_list)) ?? top(window_left(focused, window_list));
+        }
+        return null;
     }
 
     left(ext: Ext, window: ShellWindow | null): ShellWindow | null {
@@ -42,18 +46,16 @@ export class FocusSelector {
     }
 
     up(ext: Ext, window: ShellWindow | null): ShellWindow | null {
-        return this.select(ext, window_up, window);
+        let focused = window ?? ext.focus_window();
+        if (focused) {
+            let window_list = ext.active_window_list();
+            return top(window_up(focused, window_list)) ?? top(window_left(focused, window_list)) ?? top(window_right(focused, window_list));
+        }
+        return null;
     }
 }
 
-function select(
-    windows: (a: ShellWindow, b: Array<ShellWindow>) => Array<ShellWindow>,
-    focused: ShellWindow,
-    window_list: Array<ShellWindow>
-): ShellWindow | null {
-    const array = windows(focused, window_list);
-    return array.length > 0 ? array[0] : null;
-}
+const top = <T>(xs: Array<T>): T | null => xs.length > 0 ? xs[0] : null;
 
 function window_down(focused: ShellWindow, windows: Array<ShellWindow>) {
     return windows

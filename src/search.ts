@@ -38,13 +38,13 @@ export class Search {
     /** Output of `Main.pushModal`; Input to `Main.popModal()` */
     private grab_handle: any = null
 
-    activate_id: (index: number) => void = () => {}
-    cancel: () => void = () => {}
-    complete: () => void = () => {}
-    search: (search: string) => void = () => {}
-    select: (id: number) => void = () => {}
-    quit: (id: number) => void = () => {}
-    copy: (id: number) => void = () => {}
+    activate_id: (index: number) => void = () => { }
+    cancel: () => void = () => { }
+    complete: () => void = () => { }
+    search: (search: string) => void = () => { }
+    select: (id: number) => void = () => { }
+    quit: (id: number) => void = () => { }
+    copy: (id: number) => void = () => { }
 
     constructor() {
         this.active_id = 0;
@@ -93,13 +93,13 @@ export class Search {
 
             const is_down = (): boolean => {
                 return key === "Down" ||
-                    (ctrlKey && key === "J") ||
+                    (ctrlKey && key === "H") ||
                     (ctrlKey && key === "N");
             }
 
             const is_up = (): boolean => {
                 return key === "Up" || key === "ISO_Left_Tab" ||
-                    (ctrlKey && key === "K") ||
+                    (ctrlKey && key === "T") ||
                     (ctrlKey && key === "P");
             }
 
@@ -153,6 +153,9 @@ export class Search {
             } else if (key === "Tab") {
                 // Tab was pressed, check for tab completion
                 this.complete();
+                return;
+            } else if (ctrlKey && key === "M") {
+                this.activate_id(this.active_id);
                 return;
             }
 
@@ -365,7 +368,7 @@ export class Search {
         widget.connect('clicked', () => this.activate_id(id))
         widget.connect('notify::hover', () => {
             const { x, y } = Lib.cursor_rect()
-            if ( x === initial_cursor.x && y === initial_cursor.y) return
+            if (x === initial_cursor.x && y === initial_cursor.y) return
             this.select_id(id)
             this.select(id)
         })
@@ -416,7 +419,7 @@ export class SearchOption {
     shortcut: St.Widget = new St.Label({ text: "", y_align: Clutter.ActorAlign.CENTER, style: "padding-left: 6px;padding-right: 6px" })
 
     constructor(title: string, description: null | string, category_icon: null | JsonIPC.IconSource, icon: null | JsonIPC.IconSource, icon_size: number,
-                exec: null | string, keywords: null | Array<string>) {
+        exec: null | string, keywords: null | Array<string>) {
         this.title = title
         this.description = description
         this.exec = exec
