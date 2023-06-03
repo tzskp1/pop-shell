@@ -4,7 +4,7 @@ const Me = imports.misc.extensionUtils.getCurrentExtension();
 import type { Ext } from "./extension";
 
 const { wm } = imports.ui.main;
-const { Meta, Shell } = imports.gi;
+const { Meta, Shell, GLib } = imports.gi;
 
 export class Keybindings {
     global: Object;
@@ -35,6 +35,8 @@ export class Keybindings {
                     ext.register_fn(() => win.activate(true))
                 }
             },
+
+            "run-terminal": () => GLib.spawn_command_line_async("/usr/bin/foot"),
 
             "toggle-floating": () => ext.auto_tiler?.toggle_floating(ext),
 
